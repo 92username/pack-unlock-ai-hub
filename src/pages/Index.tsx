@@ -139,7 +139,6 @@ const unlockPackBenefits = [
 export default function Index() {
   const [course, setCourse] = useState(defaultCourseOptions[0]);
   const [track, setTrack] = useState(careerTracks[0]);
-  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showAllBenefits, setShowAllBenefits] = useState(false);
@@ -159,18 +158,12 @@ export default function Index() {
   // After onboarding, trigger suggestions
   async function handleStart(e: React.FormEvent) {
     e.preventDefault();
-    if (!email || !email.includes("@")) {
-      toast({ title: "Please enter a valid email.", description: "We need your school email address to verify your student status.", });
-      return;
-    }
     setLoading(true);
     setTimeout(async () => {
-      localStorage.setItem("unlockpack_user", JSON.stringify({ course, track, email }));
-
+      localStorage.setItem("unlockpack_user", JSON.stringify({ course, track }));
       // Fetch GPT suggestions
       const res = await getSuggestions({ course, track });
       setSuggested(res);
-
       setLoading(false);
       setShowSuggestions(true);
     }, 700);
@@ -306,19 +299,6 @@ export default function Index() {
                 <option key={option}>{option}</option>
               ))}
             </select>
-            <label className="text-base font-medium mb-1" htmlFor="email">
-              School Email
-            </label>
-            <input
-              id="email"
-              className="border border-muted rounded px-3 py-2"
-              type="email"
-              placeholder="you@student.edu"
-              autoComplete="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
             <button
               type="submit"
               disabled={loading}

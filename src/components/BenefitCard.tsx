@@ -23,6 +23,26 @@ type Benefit = {
   onRevert?: () => void;
 };
 
+function requiresAcademicEmail(benefit: Benefit) {
+  // Basic check for keywords/ids (customize as needed for real production)
+  const idsNeedingEmail = [
+    "github-student-pack",
+    "jetbrains-student-pack",
+    "azure-for-students",
+    "notion-students",
+    "1password-students",
+    "mongodb-atlas-cert",
+    "datadog-students",
+    "blackfire-profiler",
+    "github-foundations-cert",
+    "dottech-domain",
+  ];
+  // This covers most academic benefits; extend as needed.
+  return idsNeedingEmail.includes(benefit.id) ||
+    (benefit.provider && /student|edu|academy|school|notion/i.test(benefit.provider)) ||
+    /student|edu|academy|school|notion/.test(benefit.name);
+}
+
 export default function BenefitCard({
   name,
   id,
@@ -86,6 +106,11 @@ export default function BenefitCard({
                   </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
+                  {requiresAcademicEmail({ id, name, provider, description, activationUrl, value }) && (
+                    <div className="w-full text-sm text-orange-700 bg-orange-50 border border-orange-200 rounded-md p-3 mb-2 text-center">
+                      Reminder: This benefit requires a valid academic email address (e.g., yourname@edu.com) to activate.
+                    </div>
+                  )}
                   <Button
                     className="w-full"
                     onClick={confirmUnlock}
