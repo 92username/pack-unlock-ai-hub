@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import BenefitCard from "@/components/BenefitCard";
@@ -67,7 +66,7 @@ export default function Explore() {
   const categories = getOrderedCategories(benefits);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
+    <div>
       <Navbar />
       <main className="max-w-6xl mx-auto px-5 py-12">
         <h1 className="text-4xl font-bold mb-4 text-primary">
@@ -76,7 +75,6 @@ export default function Explore() {
         <p className="mb-7 text-muted-foreground text-lg">
           Unlock top educational deals & software—become unstoppable. Confirm each unlock to track it on your dashboard!
         </p>
-
         {/* Category grouping by field */}
         {categories.map((category) => {
           const benefitsInCategory = benefits.filter((b) => b.category === category);
