@@ -7,13 +7,12 @@ const plans = [
     name: "Basic",
     price: (
       <>
-        <span className="text-3xl font-extrabold tracking-tight">$0</span>
-        <span className="ml-1 text-base font-medium text-[#B0B1CD]">/ month</span>
+        <span className="text-3xl font-extrabold tracking-tight text-[#1A1831]">$0</span>
+        <span className="ml-1 text-base font-medium text-[#7B82A0]">/ month</span>
       </>
     ),
-    description: "For students just starting out.",
+    description: "Full access to UnlockPack.AI",
     features: [
-      "Full access to UnlockPack.AI",
       "Unlock & track student benefits",
       "Access to public GitHub repos with tutorials",
       "AI-assisted onboarding & benefit suggestions",
@@ -26,8 +25,8 @@ const plans = [
     name: "Pro",
     price: (
       <>
-        <span className="text-3xl font-extrabold tracking-tight">$X</span>
-        <span className="ml-1 text-base font-medium text-[#B0B1CD]">/ month</span>
+        <span className="text-3xl font-extrabold tracking-tight text-black">$X</span>
+        <span className="ml-1 text-base font-medium text-black/60">/ month</span>
       </>
     ),
     description: "For students ready to go beyond activation.",
@@ -38,13 +37,13 @@ const plans = [
       "Codespaces-style plug-and-play repos",
     ],
     buttonLabel: "Upgrade",
-    buttonVariant: "secondary",
+    buttonVariant: "primary",
     highlight: true,
   },
   {
     name: "Enterprise",
     price: (
-      <span className="text-2xl font-extrabold tracking-tight">Custom pricing</span>
+      <span className="text-2xl font-extrabold tracking-tight text-[#1A1831]">Custom pricing</span>
     ),
     description: "For companies to engage and support students.",
     features: [
@@ -71,43 +70,67 @@ export default function Pricing() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {plans.map((plan, i) => {
+              const isPro = plan.name === "Pro";
               const cardClasses = [
                 "p-8 flex flex-col items-center text-center rounded-card border bg-white/70 shadow-glass transition-all",
                 plan.highlight
-                  ? "bg-gradient-to-b from-[#EDEBFF] via-[#D6CFFD] to-[#6A5AE0] text-white shadow-xl ring-2 ring-primary" +
-                    " md:scale-105 z-10 pricing-card-shadow"
+                  ? "relative overflow-hidden bg-gradient-to-b from-[#F3F6FF] via-[#EDEBFF] to-[#B6A7F7] ring-2 ring-[#6A5AE0] md:scale-105 z-10"
                   : "bg-white/60 text-heading shadow-card"
               ].join(" ");
               return (
                 <div key={plan.name} className={cardClasses}>
-                  <h2 className={"text-xl font-bold mb-2 " + (plan.highlight ? "text-primary" : "text-heading")}>
+                  <h2
+                    className={
+                      "text-xl font-bold mb-2 " +
+                      (plan.highlight
+                        ? "text-[#6A5AE0]"
+                        : "text-[#1A1831]")
+                    }
+                  >
                     {plan.name}
                   </h2>
-                  <div className={"mb-2 " + (plan.highlight ? "text-white" : "text-heading")}>{plan.price}</div>
-                  <p className={"mb-6 font-medium " + (plan.highlight ? "text-white/80" : "text-body")}>{plan.description}</p>
-                  <ul className={"mb-8 flex-1 flex flex-col gap-4 text-[15px] " + (plan.highlight ? "text-white" : "text-body")}>
+                  <div className={"mb-2 " + (plan.highlight ? "text-black" : "text-[#1A1831]")}>{plan.price}</div>
+                  <p
+                    className={
+                      "mb-6 font-medium text-base " +
+                      (isPro ? "text-black/70" : plan.highlight ? "text-white/80" : "text-body")
+                    }
+                  >
+                    {plan.description}
+                  </p>
+                  <ul
+                    className={[
+                      "mb-8 flex-1 flex flex-col gap-4 text-[15px] font-medium",
+                      isPro ? "text-black" : plan.highlight ? "text-white" : "text-body",
+                    ].join(" ")}
+                  >
                     {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-3 justify-center">
+                      <li
+                        key={idx}
+                        className="flex items-center gap-3 justify-center"
+                      >
                         <span
                           className={
                             "block h-2.5 w-2.5 rounded-full " +
-                            (plan.highlight
-                              ? "bg-white/80"
+                            (isPro
+                              ? "bg-black"
+                              : plan.highlight
+                              ? "bg-[#6A5AE0]"
                               : idx === 0
                               ? "bg-primary"
                               : "bg-accent")
                           }
                         />
-                        <span>{feature}</span>
+                        <span className={isPro ? "text-black" : ""}>{feature}</span>
                       </li>
                     ))}
                   </ul>
                   <Button
                     variant={plan.buttonVariant as any}
                     className={[
-                      "w-full h-12 font-semibold text-base rounded-lg mt-1 px-5 capitalize",
+                      "w-full h-12 font-semibold text-base rounded-xl mt-1 px-5 capitalize shadow-lg",
                       plan.highlight
-                        ? "bg-primary text-white hover:brightness-110 shadow-lg"
+                        ? "bg-[#6A5AE0] text-white hover:brightness-110"
                         : plan.buttonVariant === "outline"
                         ? "border-primary text-primary bg-white hover:bg-primary/10"
                         : ""
@@ -115,6 +138,10 @@ export default function Pricing() {
                   >
                     {plan.buttonLabel}
                   </Button>
+                  {/* Add faint border-radius like in Agent.AI for Pro */}
+                  {plan.highlight && (
+                    <div className="absolute inset-0 pointer-events-none rounded-card border border-[#BFBFF2]"></div>
+                  )}
                 </div>
               );
             })}
