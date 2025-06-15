@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { to: "/explore", label: "Explore", icon: BookOpen },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/pricing", label: "Pricing", icon: null },
 ];
 
 export default function Navbar() {
@@ -30,7 +31,7 @@ export default function Navbar() {
               location.pathname === to && "bg-muted text-primary"
             )}
           >
-            <Icon className="w-5 h-5" />
+            {Icon ? <Icon className="w-5 h-5" /> : null}
             {label}
           </Link>
         ))}
