@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import BenefitCard from "@/components/BenefitCard";
@@ -8,6 +9,7 @@ import CloudBenefits from "@/components/CloudBenefits";
 import FrontendBenefits from "@/components/FrontendBenefits";
 import MonitoringBenefits from "@/components/MonitoringBenefits";
 import WordPressBenefits from "@/components/WordPressBenefits";
+import { unlockPackBenefits } from "@/data/unlockPackBenefits";
 
 const GOAL = 14587;
 

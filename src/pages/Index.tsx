@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import useGptSuggestions from "@/hooks/useGptSuggestions";
 import BenefitCard from "@/components/BenefitCard";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { unlockPackBenefits } from "@/data/unlockPackBenefits";
 
 // NEW total
 const TOTAL_BENEFITS_VALUE = 82584;
@@ -41,7 +42,7 @@ const careerTracks = [
 ];
 
 // We'll use the full set of benefits for both suggestion and full grid
-const unlockPackBenefits = [
+const unlockPackBenefitsOld = [
   {
     id: "github-student-pack",
     name: "GitHub Student Pack",
