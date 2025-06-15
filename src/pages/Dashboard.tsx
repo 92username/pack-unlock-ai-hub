@@ -44,7 +44,7 @@ export default function Dashboard() {
   const unlockedBenefits = unlockPackBenefits.filter(b => unlocked[b.id]);
   
   return (
-    <div>
+    <div className="min-h-screen">
       <Navbar />
       <main className="max-w-5xl mx-auto px-5 pb-20">
         <DashboardSummary

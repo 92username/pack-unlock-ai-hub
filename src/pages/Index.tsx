@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import OnboardingView from "@/components/OnboardingView";
 import SuggestionsView from "@/components/SuggestionsView";
@@ -18,7 +17,7 @@ export default function Index() {
   } = useBenefitState();
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Navbar />
       {showSuggestions ? (
         <SuggestionsView

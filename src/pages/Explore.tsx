@@ -66,7 +66,7 @@ export default function Explore() {
   const categories = getOrderedCategories(benefits);
 
   return (
-    <div>
+    <div className="min-h-[300vh]">
       <Navbar />
       <main className="max-w-6xl mx-auto px-5 py-12">
         <h1 className="text-4xl font-bold mb-4 text-primary">

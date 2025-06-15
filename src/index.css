@@ -36,6 +36,9 @@
 }
 
 @layer utilities {
+  .gradient-bg {
+    @apply bg-gradient-to-b from-[#f3f6ff] via-[#edeaff] to-[#e7e2ff];
+  }
   .pricing-gradient-cta {
     @apply bg-gradient-to-r from-accent via-primary to-primary text-white font-semibold hover:brightness-110 transition;
   }
