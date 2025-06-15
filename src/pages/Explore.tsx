@@ -1,13 +1,29 @@
+
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import BenefitCard from "@/components/BenefitCard";
-import DevToolsBenefits from "@/components/DevToolsBenefits";
-import DesignBenefits from "@/components/DesignBenefits";
-import CloudBenefits from "@/components/CloudBenefits";
-import FrontendBenefits from "@/components/FrontendBenefits";
-import MonitoringBenefits from "@/components/MonitoringBenefits";
-import WordPressBenefits from "@/components/WordPressBenefits";
-import { unlockPackBenefits } from "@/data/unlockPackBenefits";
+// If you ever split out by Benefit type, you won't need category-components anymore.
+
+import unlockPackBenefitsData from "@/data/unlockPackBenefits.json";
+
+type Benefit = {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  value_usd: number;
+  auto_access: boolean;
+  activation_link: string | null;
+};
+
+// Helper: Get all unique categories in appearance order (can sort if prefer alpha)
+const getOrderedCategories = (benefits: Benefit[]): string[] => {
+  const seen = new Set<string>();
+  benefits.forEach((b) => {
+    if (b.category && !seen.has(b.category)) seen.add(b.category);
+  });
+  return Array.from(seen); // Or: [...seen].sort() for alpha sort
+};
 
 export default function Explore() {
   const [unlocked, setUnlocked] = useState<{ [bid: string]: boolean }>(() => {
@@ -19,7 +35,7 @@ export default function Explore() {
   });
 
   useEffect(() => {
-    setUnlocked(u => {
+    setUnlocked((u) => {
       try {
         return { ...u, ...(JSON.parse(localStorage.getItem("unlockpack_benefits") || "{}")) };
       } catch {
@@ -29,20 +45,26 @@ export default function Explore() {
   }, []);
 
   function handleUnlock(id: string) {
-    setUnlocked(u => {
+    setUnlocked((u) => {
       const next = { ...u, [id]: true };
       localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
       return next;
     });
   }
   function handleRevert(id: string) {
-    setUnlocked(u => {
+    setUnlocked((u) => {
       const next = { ...u };
       delete next[id];
       localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
       return next;
     });
   }
+
+  // Parse data from JSON and cast for TS
+  const benefits: Benefit[] = unlockPackBenefitsData as any;
+
+  // Get ordered list of categories
+  const categories = getOrderedCategories(benefits);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
@@ -55,31 +77,32 @@ export default function Explore() {
           Unlock top educational deals & software—become unstoppable. Confirm each unlock to track it on your dashboard!
         </p>
 
-        {/* Render benefit cards grouped by category */}
-        <DevToolsBenefits benefits={unlockPackBenefits} unlocked={unlocked} onUnlock={handleUnlock} onRevert={handleRevert} />
-        <DesignBenefits benefits={unlockPackBenefits} unlocked={unlocked} onUnlock={handleUnlock} onRevert={handleRevert} />
-        <CloudBenefits benefits={unlockPackBenefits} unlocked={unlocked} onUnlock={handleUnlock} onRevert={handleRevert} />
-        <FrontendBenefits benefits={unlockPackBenefits} unlocked={unlocked} onUnlock={handleUnlock} onRevert={handleRevert} />
-        <MonitoringBenefits benefits={unlockPackBenefits} unlocked={unlocked} onUnlock={handleUnlock} onRevert={handleRevert} />
-        <WordPressBenefits benefits={unlockPackBenefits} unlocked={unlocked} onUnlock={handleUnlock} onRevert={handleRevert} />
-
-        {/* Fallback for any benefit not matched by above categories */}
-        <section>
-          <h3 className="text-xl font-bold mb-2 mt-6">Other</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {unlockPackBenefits.filter(b =>
-              !["Dev Tools", "Design", "Design Assets", "Design Tools", "Design & AI", "Cloud", "Cloud Hosting", "Frontend Tools", "Monitoring", "WordPress"].includes(b.provider)
-            ).map(b => (
-              <BenefitCard
-                key={b.id}
-                {...b}
-                unlocked={!!unlocked[b.id]}
-                onUnlock={() => handleUnlock(b.id)}
-                onRevert={() => handleRevert(b.id)}
-              />
-            ))}
-          </div>
-        </section>
+        {/* Category grouping by field */}
+        {categories.map((category) => {
+          const benefitsInCategory = benefits.filter((b) => b.category === category);
+          if (!benefitsInCategory.length) return null;
+          return (
+            <section key={category} className="mb-12">
+              <h3 className="text-2xl font-bold mb-4 mt-6">{category}</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {benefitsInCategory.map((b) => (
+                  <BenefitCard
+                    key={b.id}
+                    id={b.id}
+                    name={b.name}
+                    provider={b.category}
+                    description={b.description}
+                    activationUrl={b.activation_link || "#"}
+                    value={b.value_usd}
+                    unlocked={!!unlocked[b.id]}
+                    onUnlock={() => handleUnlock(b.id)}
+                    onRevert={() => handleRevert(b.id)}
+                  />
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </main>
     </div>
   );
