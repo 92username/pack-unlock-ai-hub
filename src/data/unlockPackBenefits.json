@@ -21,7 +21,7 @@
     "id": "heroku-hosting",
     "name": "Heroku Hosting",
     "description": "Hospedagem de aplicações na nuvem",
-    "category": "Cloud Hosting",
+    "category": "Cloud",
     "value_usd": 312,
     "auto_access": false,
     "activation_link": "https://www.heroku.com"
@@ -30,7 +30,7 @@
     "id": "visual-studio-devtools",
     "name": "Visual Studio Tools (Microsoft Dev Essentials)",
     "description": "Acesso gratuito a ferramentas e IDEs da Microsoft",
-    "category": "Dev Tools",
+    "category": "Developer Tools",
     "value_usd": 8757,
     "auto_access": true,
     "activation_link": "https://visualstudio.microsoft.com/dev-essentials/"
@@ -39,7 +39,7 @@
     "id": "new-relic-observability",
     "name": "New Relic Observability Suite",
     "description": "Ferramentas de monitoramento de aplicações",
-    "category": "Monitoring",
+    "category": "Cloud",
     "value_usd": 3816,
     "auto_access": true,
     "activation_link": "https://newrelic.com/github-students"
@@ -57,7 +57,7 @@
     "id": "polypane-browser",
     "name": "Polypane Browser",
     "description": "Responsive development browser for modern frontend workflows",
-    "category": "Frontend Tools",
+    "category": "Developer Tools",
     "value_usd": 144,
     "auto_access": true,
     "activation_link": "https://polypane.app/education/"
@@ -66,7 +66,7 @@
     "id": "iconscout-library",
     "name": "IconScout",
     "description": "Access premium icons and illustrations 100% free",
-    "category": "Design Assets",
+    "category": "Design",
     "value_usd": 179.88,
     "auto_access": true,
     "activation_link": "https://iconscout.com/github-students"
@@ -75,7 +75,7 @@
     "id": "icons8-ai-tools",
     "name": "Icons8",
     "description": "Graphics, icons, and AI-powered tools for creatives",
-    "category": "Design & AI",
+    "category": "Design",
     "value_usd": 135,
     "auto_access": true,
     "activation_link": "https://icons8.com/github-students"
@@ -84,7 +84,7 @@
     "id": "visme-presentations",
     "name": "Visme",
     "description": "Design professional presentations with premium access",
-    "category": "Design Tools",
+    "category": "Design",
     "value_usd": 36.75,
     "auto_access": true,
     "activation_link": "https://www.visme.co/github-students/"
@@ -93,7 +93,7 @@
     "id": "themeisle-wp-themes",
     "name": "Themeisle",
     "description": "Premium WordPress themes free for students",
-    "category": "WordPress",
+    "category": "Marketing",
     "value_usd": 259,
     "auto_access": true,
     "activation_link": "https://themeisle.com/github-students/"
@@ -102,7 +102,7 @@
     "id": "gitpod-online-ide",
     "name": "Gitpod Online IDE",
     "description": "Cloud-based development environment accessible anytime",
-    "category": "Dev Tools",
+    "category": "Developer Tools",
     "value_usd": 168,
     "auto_access": true,
     "activation_link": "https://www.gitpod.io/github-student"
@@ -111,7 +111,7 @@
     "id": "scotch-virtual-labs",
     "name": "Scotch Virtual Labs",
     "description": "Access virtual development labs for practice and projects",
-    "category": "Dev Training",
+    "category": "Developer Tools",
     "value_usd": 99,
     "auto_access": true,
     "activation_link": "https://scotch.io/github-students"
@@ -120,7 +120,7 @@
     "id": "codeanywhere-cloud-editor",
     "name": "Codeanywhere Cloud IDE",
     "description": "Collaborative cloud IDE for development on the go",
-    "category": "Dev Tools",
+    "category": "Developer Tools",
     "value_usd": 159,
     "auto_access": true,
     "activation_link": "https://codeanywhere.com/github-students"
@@ -129,7 +129,7 @@
     "id": "cssscan-pro-inspector",
     "name": "CSSScan Pro",
     "description": "Inspect CSS with superpowers – Pro version for students",
-    "category": "Frontend Tools",
+    "category": "Developer Tools",
     "value_usd": 39,
     "auto_access": true,
     "activation_link": "https://getcssscan.com/github-students"
@@ -138,7 +138,7 @@
     "id": "pingdom-uptime-monitor",
     "name": "Pingdom Uptime Monitor",
     "description": "Website monitoring service with student access",
-    "category": "Monitoring",
+    "category": "Cloud",
     "value_usd": 145,
     "auto_access": true,
     "activation_link": "https://www.pingdom.com/github-students"
@@ -156,7 +156,7 @@
     "id": "browserstack-test-platform",
     "name": "BrowserStack",
     "description": "Run tests on real devices and browsers in the cloud",
-    "category": "Testing",
+    "category": "Security",
     "value_usd": 2388,
     "auto_access": true,
     "activation_link": "https://www.browserstack.com/github-students"
@@ -165,7 +165,7 @@
     "id": "bump-sh-api-docs",
     "name": "Bump.sh",
     "description": "Auto-generated, versioned API documentation platform",
-    "category": "API Tools",
+    "category": "API & Infrastructure",
     "value_usd": 5364,
     "auto_access": true,
     "activation_link": "https://bump.sh/github-students"
@@ -174,7 +174,7 @@
     "id": "codecov-coverage",
     "name": "Codecov",
     "description": "Code coverage and quality reporting tool",
-    "category": "CI/CD",
+    "category": "API & Infrastructure",
     "value_usd": 432,
     "auto_access": true,
     "activation_link": "https://about.codecov.io/github-students"
@@ -183,7 +183,7 @@
     "id": "codedex-gamified-coding",
     "name": "Codédex",
     "description": "Gamified programming courses and challenges",
-    "category": "Learning Platforms",
+    "category": "Courses",
     "value_usd": 23.89,
     "auto_access": true,
     "activation_link": "https://www.codedex.io/github-students"
@@ -192,7 +192,7 @@
     "id": "codescene-analysis",
     "name": "CodeScene",
     "description": "Code analysis and visualization platform",
-    "category": "Code Analysis",
+    "category": "API & Infrastructure",
     "value_usd": 216,
     "auto_access": true,
     "activation_link": null
@@ -201,7 +201,7 @@
     "id": "configcat-feature-flags",
     "name": "ConfigCat",
     "description": "Feature flag service to control release rollouts",
-    "category": "DevOps Tools",
+    "category": "API & Infrastructure",
     "value_usd": 4320,
     "auto_access": true,
     "activation_link": null
@@ -210,7 +210,7 @@
     "id": "cryptolens-licensing",
     "name": "CryptoLens",
     "description": "Tool to license and distribute your software",
-    "category": "Software Licensing",
+    "category": "API & Infrastructure",
     "value_usd": 1782,
     "auto_access": false,
     "activation_link": "https://cryptolens.io"
@@ -219,7 +219,7 @@
     "id": "deepnote-notebooks",
     "name": "Deepnote",
     "description": "Collaborative Jupyter notebooks in the cloud",
-    "category": "Data Science",
+    "category": "Courses",
     "value_usd": 1782,
     "auto_access": true,
     "activation_link": "https://deepnote.com/education"
@@ -228,7 +228,7 @@
     "id": "deepscan-js-analyzer",
     "name": "DeepScan",
     "description": "JavaScript code analyzer for code quality and bug detection",
-    "category": "Code Analysis",
+    "category": "API & Infrastructure",
     "value_usd": 48,
     "auto_access": true,
     "activation_link": "https://deepscan.io/github-students"
