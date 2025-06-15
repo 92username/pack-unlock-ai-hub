@@ -265,7 +265,7 @@ const unlockPackBenefits = [
     provider: "Learning Platforms",
     description: "Gamified programming courses and challenges",
     activationUrl: "https://www.codedex.io/github-students",
-    value: 23893.80,
+    value: 23.89,
   },
 ];
 
