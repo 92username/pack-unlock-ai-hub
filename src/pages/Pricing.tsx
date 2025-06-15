@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 
@@ -89,51 +88,55 @@ export default function Pricing() {
                   >
                     {plan.name}
                   </h2>
-                  <div className={"mb-2 " + (plan.highlight ? "text-black" : "text-[#1A1831]")}>{plan.price}</div>
+                  <div
+                    className={
+                      "mb-2 " +
+                      (plan.highlight ? "text-slate-900" : "text-[#1A1831]")
+                    }
+                  >
+                    {plan.price}
+                  </div>
                   <p
                     className={
                       "mb-6 font-medium text-base " +
-                      (isPro ? "text-black/70" : plan.highlight ? "text-white/80" : "text-body")
+                      (isPro
+                        ? "text-slate-900"
+                        : plan.highlight
+                        ? "text-white/80"
+                        : "text-body")
                     }
                   >
                     {plan.description}
                   </p>
+                  {/* Updated feature bullets for all cards */}
                   <ul
                     className={[
-                      "mb-8 flex-1 flex flex-col gap-4 text-[15px] font-medium",
-                      isPro ? "text-black" : plan.highlight ? "text-white" : "text-body",
+                      "mb-8 flex-1 list-disc list-inside ml-4 space-y-2 leading-relaxed font-medium",
+                      isPro
+                        ? "text-slate-900"
+                        : plan.highlight
+                        ? "text-white"
+                        : "text-body"
                     ].join(" ")}
                   >
                     {plan.features.map((feature, idx) => (
                       <li
                         key={idx}
-                        className="flex items-center gap-3 justify-center"
+                        className={isPro ? "text-slate-900" : ""}
                       >
-                        <span
-                          className={
-                            "block h-2.5 w-2.5 rounded-full " +
-                            (isPro
-                              ? "bg-black"
-                              : plan.highlight
-                              ? "bg-[#6A5AE0]"
-                              : idx === 0
-                              ? "bg-primary"
-                              : "bg-accent")
-                          }
-                        />
-                        <span className={isPro ? "text-black" : ""}>{feature}</span>
+                        {feature}
                       </li>
                     ))}
                   </ul>
                   <Button
                     variant={plan.buttonVariant as any}
                     className={[
-                      "w-full h-12 font-semibold text-base rounded-xl mt-1 px-5 capitalize shadow-lg",
+                      "w-full h-12 font-semibold text-base rounded-xl mt-1 px-5 capitalize shadow-lg transition-colors",
                       plan.highlight
                         ? "bg-[#6A5AE0] text-white hover:brightness-110"
                         : plan.buttonVariant === "outline"
-                        ? "border-primary text-primary bg-white hover:bg-primary/10"
-                        : ""
+                        ? "border-primary text-primary bg-white hover:bg-primary/10 hover:text-primary"
+                        : "bg-primary text-white hover:text-primary"
                     ].join(" ")}
                   >
                     {plan.buttonLabel}
