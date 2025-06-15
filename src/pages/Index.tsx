@@ -406,22 +406,24 @@ export default function Index() {
             Based on your path: <span className="font-semibold text-primary">{track}</span>
             {gptLoading && <span className="ml-2">Loading recommendations...</span>}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+          {/* Suggestion cards & "Why" label grouped together */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 gap-y-8 mb-8">
             {suggested.map(s => (
-              <div key={s.benefit.id}>
+              <div key={s.benefit.id} className="flex flex-col gap-2 mb-2">
                 <BenefitCard
                   {...s.benefit}
                   unlocked={!!alreadyUnlocked[s.benefit.id]}
                   onUnlock={() => handleUnlock(s.benefit.id)}
                   onRevert={() => handleRevert(s.benefit.id)}
                 />
-                <div className="text-[13px] mt-2 mb-6 rounded bg-blue-50/80 p-2 font-medium border border-slate-200 text-blue-900">
+                <div className="text-[13px] rounded bg-blue-50/80 p-2 font-medium border border-slate-200 text-blue-900 mt-2">
                   <span className="font-bold">Why:</span> {s.reason}
                 </div>
               </div>
             ))}
           </div>
-          <div className="mb-9">
+          {/* Add spacing above the next prompt */}
+          <div className="mb-9 mt-8">
             <h3 className="font-semibold text-lg mb-2 mt-4">
               Want to explore everything you can unlock?
             </h3>
