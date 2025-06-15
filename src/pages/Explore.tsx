@@ -267,6 +267,46 @@ const unlockPackBenefits = [
     activationUrl: "https://www.codedex.io/github-students",
     value: 23.89,
   },
+  {
+    id: "codescene-analysis",
+    name: "CodeScene",
+    provider: "Code Analysis",
+    description: "Code analysis and visualization platform",
+    activationUrl: "#",
+    value: 216,
+  },
+  {
+    id: "configcat-feature-flags",
+    name: "ConfigCat",
+    provider: "DevOps Tools",
+    description: "Feature flag service to control release rollouts",
+    activationUrl: "#",
+    value: 4320,
+  },
+  {
+    id: "cryptolens-licensing",
+    name: "CryptoLens",
+    provider: "Software Licensing",
+    description: "Tool to license and distribute your software",
+    activationUrl: "https://cryptolens.io",
+    value: 1782,
+  },
+  {
+    id: "deepnote-notebooks",
+    name: "Deepnote",
+    provider: "Data Science",
+    description: "Collaborative Jupyter notebooks in the cloud",
+    activationUrl: "https://deepnote.com/education",
+    value: 1782,
+  },
+  {
+    id: "deepscan-js-analyzer",
+    name: "DeepScan",
+    provider: "Code Analysis",
+    description: "JavaScript code analyzer for code quality and bug detection",
+    activationUrl: "https://deepscan.io/github-students",
+    value: 48,
+  },
 ];
 
 export default function Explore() {
