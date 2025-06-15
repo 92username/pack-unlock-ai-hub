@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -139,7 +138,6 @@ const unlockPackBenefits = [
 
 export default function Index() {
   const [course, setCourse] = useState(defaultCourseOptions[0]);
-  const [country, setCountry] = useState(defaultCountries[0]);
   const [track, setTrack] = useState(careerTracks[0]);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -166,17 +164,15 @@ export default function Index() {
       return;
     }
     setLoading(true);
-    // Save user profile
     setTimeout(async () => {
-      localStorage.setItem("unlockpack_user", JSON.stringify({ course, country, track, email }));
+      localStorage.setItem("unlockpack_user", JSON.stringify({ course, track, email }));
 
       // Fetch GPT suggestions
-      const res = await getSuggestions({ course, country, track });
+      const res = await getSuggestions({ course, track });
       setSuggested(res);
 
       setLoading(false);
       setShowSuggestions(true);
-      // Don't navigate immediately!
     }, 700);
   }
 
@@ -293,20 +289,6 @@ export default function Index() {
               required
             >
               {defaultCourseOptions.map(option => (
-                <option key={option}>{option}</option>
-              ))}
-            </select>
-            <label className="text-base font-medium mb-1" htmlFor="country">
-              Country
-            </label>
-            <select
-              id="country"
-              className="border border-muted rounded px-3 py-2"
-              value={country}
-              onChange={e => setCountry(e.target.value)}
-              required
-            >
-              {defaultCountries.map(option => (
                 <option key={option}>{option}</option>
               ))}
             </select>
