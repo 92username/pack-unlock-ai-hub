@@ -384,7 +384,7 @@ export default function Index() {
             Your tailored benefit picks
           </h1>
           <p className="mb-8 text-muted-foreground text-lg text-center">
-            Based on your path: <span className="font-semibold text-primary">{track}</span>
+            Based on your path: <span className="font-semibold text-primary">{JSON.parse(localStorage.getItem("unlockpack_user") || "{}")?.track || "Career Track"}</span>
             {gptLoading && <span className="ml-2">Loading recommendations...</span>}
           </p>
           {/* Suggestion cards & "Why" label grouped together */}
@@ -463,4 +463,19 @@ export default function Index() {
   }
 
   return null;
+}
+
+// --- Tracking and unlock/revert handlers ---
+function track(...args: any[]) {
+  console.log("Track function called:", args);
+}
+
+function handleUnlock(id: string) {
+  console.log("Unlocking benefit:", id);
+  // Ideally: update localStorage or state to mark as unlocked
+}
+
+function handleRevert(id: string) {
+  console.log("Reverting unlock for:", id);
+  // Ideally: update localStorage or state to revert unlock
 }
