@@ -22,31 +22,44 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#6A5AE0', // Modern purple accent, replaces hsl(var(--primary))
+          DEFAULT: '#6A5AE0',
           foreground: '#fff',
         },
-        // Blue-lavender gradient stops
+        secondary: {
+          DEFAULT: '#3B3A6F',
+          foreground: '#fff'
+        },
+        accent: {
+          DEFAULT: '#9C6BFF',
+          light: '#EDEBFF',
+        },
         gradient: {
-          start: '#E6EBFA',
-          middle: '#B5B4F3',
+          start: '#F3F6FF',
+          via: '#EDEBFF',
           end: '#6A5AE0',
         },
-        // Update text colors for more contrast
-        heading: '#181C24',
-        body: '#323B53',
+        // Text colors for SaaS/AI look
+        heading: '#1A1831',
+        body: '#3B3A6F',
+        subtle: '#7B82A0',
       },
       backgroundImage: {
-        'hero-gradient':
-          'linear-gradient(90deg, #E6EBFA 0%, #B5B4F3 50%, #6A5AE0 100%)',
+        'vertical-gradient': 'linear-gradient(to bottom, #F3F6FF 0%, #EDEBFF 50%, #6A5AE0 100%)',
+        'hero-gradient': 'linear-gradient(90deg, #E6EBFA 0%, #B5B4F3 50%, #6A5AE0 100%)',
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+      },
+      boxShadow: {
+        card: '0 6px 32px 0 rgba(28,22,76,0.15)',
+        glass: '0 8px 32px 0 rgba(106,90,224,0.10)',
       },
       borderRadius: {
         lg: '1.25rem',
         xl: '2rem',
+        card: '1.5rem',
       },
-      boxShadow: {
-        card: '0 4px 36px 0 rgba(106,90,224,0.07)',
-      },
-      // Retain animations and other customizations
+      // Animations...
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

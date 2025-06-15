@@ -12,14 +12,18 @@ const navItems = [
 export default function Navbar() {
   const location = useLocation();
   return (
-    <nav className="flex items-center gap-8 border-b border-border bg-background/80 px-8 h-16">
+    <nav className="flex items-center gap-8 border-b border-transparent bg-white/60 backdrop-blur-xl shadow-sm px-8 h-16 relative"
+         style={{
+           borderTop: '6px solid #EDEBFF',
+           boxShadow: "0 0 24px 0 rgba(28,22,76,0.06)"
+         }}>
       <Link
         to="/"
-        className="flex items-center gap-2 text-2xl font-extrabold text-primary hover:text-violet-600 transition-colors"
+        className="flex items-center gap-2 text-2xl font-extrabold text-primary hover:text-[#9C6BFF] transition-colors"
       >
-        <Book className="w-7 h-7 text-violet-600" />
+        <Book className="w-7 h-7 text-[#6A5AE0]" />
         UnlockPack
-        <span className="text-lg text-violet-400">.AI</span>
+        <span className="text-lg text-[#9C6BFF]">.AI</span>
       </Link>
       <div className="flex items-center gap-6 ml-10">
         {navItems.map(({ to, label, icon: Icon }) => (
@@ -27,8 +31,8 @@ export default function Navbar() {
             key={to}
             to={to}
             className={cn(
-              "flex items-center gap-2 text-lg font-medium px-2 py-1 rounded-md hover:bg-muted hover:text-primary transition-colors",
-              location.pathname === to && "bg-muted text-primary"
+              "flex items-center gap-2 text-lg font-medium px-2 py-1 rounded-md hover:bg-[#F3F6FF] hover:text-[#6A5AE0] transition-colors",
+              location.pathname === to && "bg-[#F3F6FF] text-[#6A5AE0] font-bold shadow-sm"
             )}
           >
             {Icon ? <Icon className="w-5 h-5" /> : null}

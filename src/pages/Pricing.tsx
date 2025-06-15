@@ -8,10 +8,10 @@ const plans = [
     price: (
       <>
         <span className="text-3xl font-extrabold tracking-tight">$0</span>
-        <span className="ml-1 text-base font-medium text-gray-500">/ month</span>
+        <span className="ml-1 text-base font-medium text-[#B0B1CD]">/ month</span>
       </>
     ),
-    description: "Full access for students to unlock benefits fast.",
+    description: "For students just starting out.",
     features: [
       "Full access to UnlockPack.AI",
       "Unlock & track student benefits",
@@ -20,14 +20,14 @@ const plans = [
     ],
     buttonLabel: "Start for Free",
     buttonVariant: "default",
-    highlight: true,
+    highlight: false,
   },
   {
     name: "Pro",
     price: (
       <>
         <span className="text-3xl font-extrabold tracking-tight">$X</span>
-        <span className="ml-1 text-base font-medium text-gray-500">/ month</span>
+        <span className="ml-1 text-base font-medium text-[#B0B1CD]">/ month</span>
       </>
     ),
     description: "For students ready to go beyond activation.",
@@ -39,14 +39,14 @@ const plans = [
     ],
     buttonLabel: "Upgrade",
     buttonVariant: "secondary",
-    highlight: false,
+    highlight: true,
   },
   {
     name: "Enterprise",
     price: (
       <span className="text-2xl font-extrabold tracking-tight">Custom pricing</span>
     ),
-    description: "For companies to unlock student engagement.",
+    description: "For companies to engage and support students.",
     features: [
       "Everything in Pro",
       "Partner spotlight inside UnlockPack",
@@ -61,53 +61,63 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <div
-      className="min-h-screen bg-hero-gradient bg-no-repeat bg-cover flex flex-col"
-    >
+    <div className="min-h-screen bg-vertical-gradient flex flex-col">
       <Navbar />
       <main className="flex-1 flex items-center justify-center px-2 md:px-0">
-        <section className="w-full max-w-6xl py-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-heading text-center mb-4">
-            Choose your plan
-          </h1>
-          <p className="text-lg text-body text-center mb-10 max-w-2xl mx-auto">
-            Unlock more with Pro and Enterprise. All plans include unlimited use of UnlockPack.AI.
+        <section className="w-full max-w-6xl py-14">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-heading text-center mb-4 tracking-tight">Pricing</h1>
+          <p className="text-lg text-subtle text-center mb-10 max-w-xl mx-auto font-normal">
+            Free to launch, built to grow.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {plans.map((plan, i) => (
-              <div
-                key={plan.name}
-                className={`
-                  relative flex flex-col bg-white rounded-xl border shadow-card px-8 py-10 transition-all
-                  ${plan.highlight
-                    ? "border-primary bg-gradient-to-br from-gradient-start via-gradient-middle to-white scale-105 ring-2 ring-primary"
-                    : "border-gray-200 bg-white"}
-                  hover:shadow-lg
-                `}
-              >
-                <h2 className="text-xl font-bold text-heading mb-2 text-center">{plan.name}</h2>
-                <div className="mb-2 text-center">{plan.price}</div>
-                <p className="mb-6 text-body text-center font-medium">{plan.description}</p>
-                <ul className="mb-8 flex-1 flex flex-col gap-4 text-body text-[15px]">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  variant={plan.buttonVariant as any}
-                  className={`
-                    w-full h-12 font-semibold text-base rounded-lg 
-                    ${plan.highlight ? "bg-primary text-white hover:bg-primary/90" : ""}
-                  `}
-                  disabled={plan.buttonLabel === "Upgrade" || plan.buttonLabel === "Get a Demo"}
-                >
-                  {plan.buttonLabel}
-                </Button>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+            {plans.map((plan, i) => {
+              const cardClasses = [
+                "p-8 flex flex-col items-center text-center rounded-card border bg-white/70 shadow-glass transition-all",
+                plan.highlight
+                  ? "bg-gradient-to-b from-[#EDEBFF] via-[#D6CFFD] to-[#6A5AE0] text-white shadow-xl ring-2 ring-primary" +
+                    " md:scale-105 z-10 pricing-card-shadow"
+                  : "bg-white/60 text-heading shadow-card"
+              ].join(" ");
+              return (
+                <div key={plan.name} className={cardClasses}>
+                  <h2 className={"text-xl font-bold mb-2 " + (plan.highlight ? "text-primary" : "text-heading")}>
+                    {plan.name}
+                  </h2>
+                  <div className={"mb-2 " + (plan.highlight ? "text-white" : "text-heading")}>{plan.price}</div>
+                  <p className={"mb-6 font-medium " + (plan.highlight ? "text-white/80" : "text-body")}>{plan.description}</p>
+                  <ul className={"mb-8 flex-1 flex flex-col gap-4 text-[15px] " + (plan.highlight ? "text-white" : "text-body")}>
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-3 justify-center">
+                        <span
+                          className={
+                            "block h-2.5 w-2.5 rounded-full " +
+                            (plan.highlight
+                              ? "bg-white/80"
+                              : idx === 0
+                              ? "bg-primary"
+                              : "bg-accent")
+                          }
+                        />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    variant={plan.buttonVariant as any}
+                    className={[
+                      "w-full h-12 font-semibold text-base rounded-lg mt-1 px-5 capitalize",
+                      plan.highlight
+                        ? "bg-primary text-white hover:brightness-110 shadow-lg"
+                        : plan.buttonVariant === "outline"
+                        ? "border-primary text-primary bg-white hover:bg-primary/10"
+                        : ""
+                    ].join(" ")}
+                  >
+                    {plan.buttonLabel}
+                  </Button>
+                </div>
+              );
+            })}
           </div>
         </section>
       </main>
