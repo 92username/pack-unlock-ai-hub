@@ -181,6 +181,46 @@ const unlockPackBenefits = [
     activationUrl: "https://bootstrapstudio.io/student-discount",
     value: 29,
   },
+  {
+    id: "polypane-browser",
+    name: "Polypane Browser",
+    provider: "Frontend Tools",
+    description: "Responsive development browser for modern frontend workflows",
+    activationUrl: "https://polypane.app/education/",
+    value: 144,
+  },
+  {
+    id: "iconscout-library",
+    name: "IconScout",
+    provider: "Design Assets",
+    description: "Access premium icons and illustrations 100% free",
+    activationUrl: "https://iconscout.com/github-students",
+    value: 179.88,
+  },
+  {
+    id: "icons8-ai-tools",
+    name: "Icons8",
+    provider: "Design & AI",
+    description: "Graphics, icons, and AI-powered tools for creatives",
+    activationUrl: "https://icons8.com/github-students",
+    value: 135,
+  },
+  {
+    id: "visme-presentations",
+    name: "Visme",
+    provider: "Design Tools",
+    description: "Design professional presentations with premium access",
+    activationUrl: "https://www.visme.co/github-students/",
+    value: 36.75,
+  },
+  {
+    id: "themeisle-wp-themes",
+    name: "Themeisle",
+    provider: "WordPress",
+    description: "Premium WordPress themes free for students",
+    activationUrl: "https://themeisle.com/github-students/",
+    value: 259,
+  },
 ];
 
 export default function Index() {
