@@ -2,7 +2,7 @@
   {
     "id": "nuvem-digitalocean",
     "name": "DigitalOcean Credits",
-    "description": "Créditos para infraestrutura em nuvem",
+    "description": "Cloud infrastructure credits",
     "category": "Cloud",
     "value_usd": 200,
     "auto_access": true,
@@ -11,7 +11,7 @@
   {
     "id": "nuvem-azure",
     "name": "Microsoft Azure for Students",
-    "description": "Créditos em serviços de nuvem Microsoft",
+    "description": "Credits for Microsoft cloud services",
     "category": "Cloud",
     "value_usd": 200,
     "auto_access": true,
@@ -20,7 +20,7 @@
   {
     "id": "heroku-hosting",
     "name": "Heroku Hosting",
-    "description": "Hospedagem de aplicações na nuvem",
+    "description": "Cloud application hosting",
     "category": "Cloud",
     "value_usd": 312,
     "auto_access": false,
@@ -29,7 +29,7 @@
   {
     "id": "visual-studio-devtools",
     "name": "Visual Studio Tools (Microsoft Dev Essentials)",
-    "description": "Acesso gratuito a ferramentas e IDEs da Microsoft",
+    "description": "Free access to Microsoft tools and IDEs",
     "category": "Developer Tools",
     "value_usd": 8757,
     "auto_access": true,
@@ -38,7 +38,7 @@
   {
     "id": "new-relic-observability",
     "name": "New Relic Observability Suite",
-    "description": "Ferramentas de monitoramento de aplicações",
+    "description": "Application monitoring tools",
     "category": "Cloud",
     "value_usd": 3816,
     "auto_access": true,
@@ -47,7 +47,7 @@
   {
     "id": "bootstrap-studio-visual-site-builder",
     "name": "Bootstrap Studio",
-    "description": "Criação visual de sites com 100% de desconto para estudantes",
+    "description": "Visual website builder, 100% discount for students",
     "category": "Design",
     "value_usd": 29,
     "auto_access": true,

@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -91,7 +90,7 @@ export default function BenefitCard({
           <>
             <Button className="w-full mt-1" onClick={handleUnlock}>Unlock</Button>
             <Dialog open={showUnlock} onOpenChange={setShowUnlock}>
-              <DialogContent>
+              <DialogContent className="bg-white text-gray-900 p-6 rounded-xl shadow-xl">
                 <DialogHeader>
                   <DialogTitle>Unlock {name}</DialogTitle>
                   <DialogDescription>
@@ -129,7 +128,7 @@ export default function BenefitCard({
             <span className="w-full text-center text-sm text-primary font-medium py-1">Unlocked!</span>
             <Button variant="outline" className="w-full" onClick={handleRevert}>Revert</Button>
             <Dialog open={showRevert} onOpenChange={setShowRevert}>
-              <DialogContent>
+              <DialogContent className="bg-white text-gray-900 p-6 rounded-xl shadow-xl">
                 <DialogHeader>
                   <DialogTitle>Revert unlock for {name}?</DialogTitle>
                   <DialogDescription>

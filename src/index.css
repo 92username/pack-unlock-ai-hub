@@ -28,7 +28,7 @@
     letter-spacing: -0.02em;
   }
   .card-glass {
-    @apply bg-white/60 backdrop-blur-xl shadow-glass border border-white/20 rounded-card;
+    @apply rounded-xl bg-white/70 dark:bg-[#1f1f2e]/90 backdrop-blur-md border border-white/30 shadow-xl text-gray-900 dark:text-white transition-opacity duration-200 ease-in-out;
   }
   .card-dark {
     @apply bg-gradient-to-b from-[#edeBFF] via-[#EDEBFF] to-[#6A5AE0] text-white shadow-card border-0 rounded-card;
