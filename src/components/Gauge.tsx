@@ -56,11 +56,13 @@ export default function Gauge({ value, goal }: GaugeProps) {
             <circle cx="104" cy="102" r="10" fill="#1e293b" stroke="#fff" strokeWidth="3" />
           </g>
           {/* Value Label */}
-          <text x="104" y="65" textAnchor="middle" fill="#1e293b" fontSize="22" fontWeight="bold">${value}</text>
+          <text x="104" y="65" textAnchor="middle" fill="#1e293b" fontSize="22" fontWeight="bold">
+            ${value.toLocaleString()}
+          </text>
         </svg>
       </div>
       <span className="text-sm text-muted-foreground mt-3">
-        Progress toward ${goal} goal
+        Progress toward ${goal.toLocaleString()} goal
       </span>
     </div>
   );

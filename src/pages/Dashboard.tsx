@@ -10,7 +10,7 @@ import MonitoringBenefits from "@/components/MonitoringBenefits";
 import WordPressBenefits from "@/components/WordPressBenefits";
 import { unlockPackBenefits } from "@/data/unlockPackBenefits";
 
-const GOAL = 14587;
+const GOAL = 82584;
 
 export default function Dashboard() {
   const [unlocked, setUnlocked] = useState<{ [bid: string]: boolean }>({});
