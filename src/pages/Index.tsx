@@ -374,6 +374,29 @@ export default function Index() {
     }, 700);
   }
 
+  // Handlers now update state and persist to localStorage
+  function handleUnlock(id: string) {
+    setAlreadyUnlocked(prev => {
+      const next = { ...prev, [id]: true };
+      localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
+      return next;
+    });
+    // Optionally, you could add a toast or analytics/track here
+    // toast({title:"Benefit unlocked!"});
+    // track("benefit_unlock", id);
+  }
+
+  function handleRevert(id: string) {
+    setAlreadyUnlocked(prev => {
+      const next = { ...prev };
+      delete next[id];
+      localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
+      return next;
+    });
+    // Optionally, also track here
+    // track("benefit_revert", id);
+  }
+
   // --- SUGGESTION VIEW: After onboarding ---
   if (showSuggestions) {
     return (
@@ -463,19 +486,4 @@ export default function Index() {
   }
 
   return null;
-}
-
-// --- Tracking and unlock/revert handlers ---
-function track(...args: any[]) {
-  console.log("Track function called:", args);
-}
-
-function handleUnlock(id: string) {
-  console.log("Unlocking benefit:", id);
-  // Ideally: update localStorage or state to mark as unlocked
-}
-
-function handleRevert(id: string) {
-  console.log("Reverting unlock for:", id);
-  // Ideally: update localStorage or state to revert unlock
 }
