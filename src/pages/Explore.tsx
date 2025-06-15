@@ -3,57 +3,96 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import BenefitCard from "@/components/BenefitCard";
 
-// All demoBenefits now require an activationUrl prop
-const demoBenefits = [
+// New list of benefits per UnlockPack.AI
+const unlockPackBenefits = [
   {
     id: "github-student-pack",
     name: "GitHub Student Pack",
-    logo: "https://github.githubassets.com/images/modules/site/edu/github-pack/github-pack-logo.png",
+    provider: "GitHub",
     description:
-      "Free premium developer tools, cloud hosting, and learning resources for students worldwide.",
+      "Premium developer tools, hosting, and learning resources for students.",
     activationUrl: "https://education.github.com/pack",
-    category: "Development",
-    value: 4200,
+    value: 288,
   },
   {
-    id: "figma-education",
-    name: "Figma for Education",
-    logo: "https://static.figma.com/app/icon/1/favicon.png",
+    id: "jetbrains-student-pack",
+    name: "JetBrains Student Pack",
+    provider: "JetBrains",
     description:
-      "Collaborative design and prototyping tools—free for students and educators.",
-    activationUrl: "https://www.figma.com/education/",
-    category: "Design",
-    value: 540,
+      "Professional developer tools including IntelliJ IDEA and PyCharm, free with a student account.",
+    activationUrl: "https://www.jetbrains.com/academy/student-pack/",
+    value: 693,
   },
   {
-    id: "adobe-edu",
-    name: "Adobe Creative Cloud",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Adobe_Creative_Cloud_rainbow_icon.svg/1024px-Adobe_Creative_Cloud_rainbow_icon.svg.png",
+    id: "azure-for-students",
+    name: "Microsoft Azure for Students",
+    provider: "Microsoft",
     description:
-      "Discounted or free access to Photoshop, Illustrator, and more via your institution.",
-    activationUrl: "https://www.adobe.com/creativecloud/buy/students.html",
-    category: "Creative",
-    value: 600,
+      "$100 in Azure credits, no credit card required, plus free select cloud and AI products.",
+    activationUrl: "https://azure.microsoft.com/en-us/free/students/",
+    value: 100,
   },
   {
-    id: "canva-edu",
-    name: "Canva for Education",
-    logo: "https://static.canva.com/static/images/favicons/apple-touch-icon-152x152.png",
+    id: "1password-students",
+    name: "1Password for Developers",
+    provider: "1Password",
     description:
-      "Easy-to-use design and publishing for classrooms, free for verified students/teachers.",
-    activationUrl: "https://www.canva.com/education/",
-    category: "Design",
-    value: 120,
+      "Unlimited password manager for student developers, free with school verification.",
+    activationUrl: "https://1password.com/developers/students",
+    value: 35,
   },
   {
-    id: "notion-edu",
+    id: "dottech-domain",
+    name: ".TECH Domain via GitHub Pack",
+    provider: ".TECH",
+    description:
+      "One-year .TECH domain registration for free via GitHub Student Pack.",
+    activationUrl: "https://get.tech",
+    value: 9,
+  },
+  {
+    id: "mongodb-atlas-cert",
+    name: "MongoDB Atlas + Certification",
+    provider: "MongoDB",
+    description:
+      "Cloud database and student access to MongoDB Associate Developer Certification.",
+    activationUrl: "https://www.mongodb.com/students",
+    value: 200,
+  },
+  {
+    id: "notion-students",
     name: "Notion for Students",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png",
+    provider: "Notion",
+    description: "Notion’s Plus Plan for free, with a verified student email.",
+    activationUrl: "https://www.notion.com/product/notion-for-education",
+    value: 360,
+  },
+  {
+    id: "datadog-students",
+    name: "Datadog for Students",
+    provider: "Datadog",
     description:
-      "Collaborative workspace for notes and projects—free Personal Pro plan for students.",
-    activationUrl: "https://www.notion.so/students",
-    category: "Productivity",
-    value: 48,
+      "Cloud monitoring and security platform — free student tier (inside GitHub Student Pack).",
+    activationUrl: "https://education.github.com/pack",
+    value: 360,
+  },
+  {
+    id: "blackfire-profiler",
+    name: "Blackfire.io Profiler",
+    provider: "Blackfire.io",
+    description:
+      "Performance profiling for web apps; one year free for students.",
+    activationUrl: "https://www.blackfire.io/students/",
+    value: 12528,
+  },
+  {
+    id: "github-foundations-cert",
+    name: "GitHub Foundations Certification",
+    provider: "GitHub",
+    description:
+      "Official certification exam access via MongoDB for student developers.",
+    activationUrl: "https://www.mongodb.com/students",
+    value: 49,
   },
 ];
 
@@ -100,12 +139,12 @@ export default function Explore() {
           Explore Student Benefits
         </h1>
         <p className="mb-7 text-muted-foreground text-lg">
-          Browse top educational deals and software—click unlock to add benefits to your dashboard!
+          Unlock top educational deals & software—become unstoppable. Confirm each unlock to track it on your dashboard!
         </p>
         <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
-          {demoBenefits.map(b => (
+          {unlockPackBenefits.map(b => (
             <BenefitCard
               key={b.id}
               {...b}

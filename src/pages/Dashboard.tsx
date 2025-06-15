@@ -5,58 +5,98 @@ import BenefitCard from "@/components/BenefitCard";
 import { BookOpen } from "lucide-react";
 import Gauge from "@/components/Gauge";
 
-const GOAL = 5508;
+const GOAL = 14587;
 
-const demoBenefits = [
+// Same list as Explore for data consistency
+const unlockPackBenefits = [
   {
     id: "github-student-pack",
     name: "GitHub Student Pack",
-    logo: "https://github.githubassets.com/images/modules/site/edu/github-pack/github-pack-logo.png",
+    provider: "GitHub",
     description:
-      "Free premium developer tools, cloud hosting, and learning resources for students worldwide.",
+      "Premium developer tools, hosting, and learning resources for students.",
     activationUrl: "https://education.github.com/pack",
-    category: "Development",
-    value: 4200,
+    value: 288,
   },
   {
-    id: "figma-education",
-    name: "Figma for Education",
-    logo: "https://static.figma.com/app/icon/1/favicon.png",
+    id: "jetbrains-student-pack",
+    name: "JetBrains Student Pack",
+    provider: "JetBrains",
     description:
-      "Collaborative design and prototyping tools—free for students and educators.",
-    activationUrl: "https://www.figma.com/education/",
-    category: "Design",
-    value: 540,
+      "Professional developer tools including IntelliJ IDEA and PyCharm, free with a student account.",
+    activationUrl: "https://www.jetbrains.com/academy/student-pack/",
+    value: 693,
   },
   {
-    id: "adobe-edu",
-    name: "Adobe Creative Cloud",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Adobe_Creative_Cloud_rainbow_icon.svg/1024px-Adobe_Creative_Cloud_rainbow_icon.svg.png",
+    id: "azure-for-students",
+    name: "Microsoft Azure for Students",
+    provider: "Microsoft",
     description:
-      "Discounted or free access to Photoshop, Illustrator, and more via your institution.",
-    activationUrl: "https://www.adobe.com/creativecloud/buy/students.html",
-    category: "Creative",
-    value: 600,
+      "$100 in Azure credits, no credit card required, plus free select cloud and AI products.",
+    activationUrl: "https://azure.microsoft.com/en-us/free/students/",
+    value: 100,
   },
   {
-    id: "canva-edu",
-    name: "Canva for Education",
-    logo: "https://static.canva.com/static/images/favicons/apple-touch-icon-152x152.png",
+    id: "1password-students",
+    name: "1Password for Developers",
+    provider: "1Password",
     description:
-      "Easy-to-use design and publishing for classrooms, free for verified students/teachers.",
-    activationUrl: "https://www.canva.com/education/",
-    category: "Design",
-    value: 120,
+      "Unlimited password manager for student developers, free with school verification.",
+    activationUrl: "https://1password.com/developers/students",
+    value: 35,
   },
   {
-    id: "notion-edu",
+    id: "dottech-domain",
+    name: ".TECH Domain via GitHub Pack",
+    provider: ".TECH",
+    description:
+      "One-year .TECH domain registration for free via GitHub Student Pack.",
+    activationUrl: "https://get.tech",
+    value: 9,
+  },
+  {
+    id: "mongodb-atlas-cert",
+    name: "MongoDB Atlas + Certification",
+    provider: "MongoDB",
+    description:
+      "Cloud database and student access to MongoDB Associate Developer Certification.",
+    activationUrl: "https://www.mongodb.com/students",
+    value: 200,
+  },
+  {
+    id: "notion-students",
     name: "Notion for Students",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png",
+    provider: "Notion",
+    description: "Notion’s Plus Plan for free, with a verified student email.",
+    activationUrl: "https://www.notion.com/product/notion-for-education",
+    value: 360,
+  },
+  {
+    id: "datadog-students",
+    name: "Datadog for Students",
+    provider: "Datadog",
     description:
-      "Collaborative workspace for notes and projects—free Personal Pro plan for students.",
-    activationUrl: "https://www.notion.so/students",
-    category: "Productivity",
-    value: 48,
+      "Cloud monitoring and security platform — free student tier (inside GitHub Student Pack).",
+    activationUrl: "https://education.github.com/pack",
+    value: 360,
+  },
+  {
+    id: "blackfire-profiler",
+    name: "Blackfire.io Profiler",
+    provider: "Blackfire.io",
+    description:
+      "Performance profiling for web apps; one year free for students.",
+    activationUrl: "https://www.blackfire.io/students/",
+    value: 12528,
+  },
+  {
+    id: "github-foundations-cert",
+    name: "GitHub Foundations Certification",
+    provider: "GitHub",
+    description:
+      "Official certification exam access via MongoDB for student developers.",
+    activationUrl: "https://www.mongodb.com/students",
+    value: 49,
   },
 ];
 
@@ -70,35 +110,27 @@ export default function Dashboard() {
         localStorage.getItem("unlockpack_benefits") || "{}"
       );
       setUnlocked(unlockedData);
-      const unlockedBenefits = demoBenefits.filter(b => unlockedData[b.id]);
-      const sum = unlockedBenefits.reduce((acc, b) => acc + b.value, 0);
-      setTotalValue(sum);
     } catch {
       setUnlocked({});
-      setTotalValue(0);
     }
   }, []);
 
-  // Add revert handling like in Explore, for completeness (optional UI)
+  // Add/Remove value when (re)calculating
+  useEffect(() => {
+    const unlockedBenefits = unlockPackBenefits.filter(b => unlocked[b.id]);
+    setTotalValue(unlockedBenefits.reduce((acc, b) => acc + b.value, 0));
+  }, [unlocked]);
+
   function handleRevert(id: string) {
     setUnlocked(u => {
       const next = { ...u };
       delete next[id];
       localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
-      // recalc value for gauge
-      const unlockedBenefits = demoBenefits.filter(b => next[b.id]);
-      setTotalValue(unlockedBenefits.reduce((acc, b) => acc + b.value, 0));
       return next;
     });
   }
 
-  const unlockedBenefits = demoBenefits.filter(b => unlocked[b.id]);
-
-  useEffect(() => {
-    // Sync value if unlocked state changes (e.g. revisit page)
-    const unlockedBenefits = demoBenefits.filter(b => unlocked[b.id]);
-    setTotalValue(unlockedBenefits.reduce((acc, b) => acc + b.value, 0));
-  }, [unlocked]);
+  const unlockedBenefits = unlockPackBenefits.filter(b => unlocked[b.id]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
@@ -116,8 +148,8 @@ export default function Dashboard() {
               </div>
               <div className="text-md text-violet-50 mt-1">
                 {
-                  totalValue > 0
-                    ? `Amazing! You've unlocked ${unlockedBenefits.length} benefits.`
+                  unlockedBenefits.length > 0
+                    ? `You've unlocked ${unlockedBenefits.length} / ${unlockPackBenefits.length} benefits!`
                     : "Start unlocking benefits to see them here!"
                 }
               </div>

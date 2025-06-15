@@ -6,7 +6,6 @@ type GaugeProps = {
   goal: number;
 };
 
-// Define colors for each segment (red, orange, yellow, green)
 const SEGMENT_COLORS = [
   "#f87171", // Red
   "#fb923c", // Orange
@@ -15,7 +14,6 @@ const SEGMENT_COLORS = [
   "#4ade80"  // Green
 ];
 
-// Each segment covers an equal portion of the arc (220deg total)
 const SEGMENT_COUNT = SEGMENT_COLORS.length;
 const START_ANGLE = -110;
 const END_ANGLE = 110;
@@ -68,7 +66,7 @@ export default function Gauge({ value, goal }: GaugeProps) {
   );
 }
 
-// describeArc helper: polar to arc path for SVGs
+// describeArc helper
 function describeArc(cx: number, cy: number, r: number, startAngle: number, endAngle: number) {
   var start = polarToCartesian(cx, cy, r, endAngle);
   var end = polarToCartesian(cx, cy, r, startAngle);
