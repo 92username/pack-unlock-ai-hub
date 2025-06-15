@@ -1,5 +1,5 @@
 
-import { Book, BookOpen, LayoutDashboard } from "lucide-react";
+import { BookOpen, LayoutDashboard } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,12 @@ export default function Navbar() {
         to="/"
         className="flex items-center gap-2 text-2xl font-extrabold text-primary hover:text-[#9C6BFF] transition-colors"
       >
-        <Book className="w-7 h-7 text-[#6A5AE0]" />
+        <img
+          src="/lovable-uploads/fa7e8932-5d30-4650-a400-779a9be76572.png"
+          alt="UnlockPack Logo"
+          className="w-7 h-7"
+          style={{ display: "inline-block", marginRight: "0.1rem" }}
+        />
         UnlockPack
         <span className="text-lg text-[#9C6BFF]">.AI</span>
       </Link>
