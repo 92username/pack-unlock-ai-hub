@@ -12,13 +12,11 @@ const TOTAL_BENEFITS_VALUE = 82584;
 const illustrationUrl =
   "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=cover&w=600&q=80";
 
+// Replace defaultCourseOptions with just 3 options
 const defaultCourseOptions = [
-  "Computer Science",
-  "Engineering",
-  "Art & Design",
-  "Business",
-  "Medicine",
-  "Other",
+  "Tech",
+  "Marketing",
+  "Design",
 ];
 
 const defaultCountries = [
@@ -264,6 +262,7 @@ const unlockPackBenefits = [
 ];
 
 export default function Index() {
+  // Set initial course to first option ("Tech")
   const [course, setCourse] = useState(defaultCourseOptions[0]);
   const [track, setTrack] = useState(careerTracks[0]);
   const [loading, setLoading] = useState(false);
