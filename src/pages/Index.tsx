@@ -221,6 +221,46 @@ const unlockPackBenefits = [
     activationUrl: "https://themeisle.com/github-students/",
     value: 259,
   },
+  {
+    id: "gitpod-online-ide",
+    name: "Gitpod Online IDE",
+    provider: "Dev Tools",
+    description: "Cloud-based development environment accessible anytime",
+    activationUrl: "https://www.gitpod.io/github-student",
+    value: 168,
+  },
+  {
+    id: "scotch-virtual-labs",
+    name: "Scotch Virtual Labs",
+    provider: "Dev Training",
+    description: "Access virtual development labs for practice and projects",
+    activationUrl: "https://scotch.io/github-students",
+    value: 99,
+  },
+  {
+    id: "codeanywhere-cloud-editor",
+    name: "Codeanywhere Cloud IDE",
+    provider: "Dev Tools",
+    description: "Collaborative cloud IDE for development on the go",
+    activationUrl: "https://codeanywhere.com/github-students",
+    value: 159,
+  },
+  {
+    id: "cssscan-pro-inspector",
+    name: "CSSScan Pro",
+    provider: "Frontend Tools",
+    description: "Inspect CSS with superpowers – Pro version for students",
+    activationUrl: "https://getcssscan.com/github-students",
+    value: 39,
+  },
+  {
+    id: "pingdom-uptime-monitor",
+    name: "Pingdom Uptime Monitor",
+    provider: "Monitoring",
+    description: "Website monitoring service with student access",
+    activationUrl: "https://www.pingdom.com/github-students",
+    value: 145,
+  },
 ];
 
 export default function Index() {
