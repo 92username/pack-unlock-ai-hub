@@ -133,7 +133,46 @@ const unlockPackBenefits = [
     activationUrl: "https://www.mongodb.com/students",
     value: 49,
   },
-  // ...imagine 20+ more benefits here for the full "Browse all 30+" experience
+  {
+    id: "nuvem-digital-ocean",
+    name: "Nuvem",
+    provider: "Digital Ocean",
+    description: "Créditos",
+    activationUrl: "", // activation_link: null
+    value: 200,
+  },
+  {
+    id: "nuvem-azure",
+    name: "Nuvem",
+    provider: "Azure",
+    description: "Cŕeditos",
+    activationUrl: "https://azure.microsoft.com/en-us/free/students/",
+    value: 200,
+  },
+  {
+    id: "hospedagem-de-aplicacoes",
+    name: "Hospedagem de aplicaçoes",
+    provider: "Heroku",
+    description: "Cŕeditos",
+    activationUrl: "", // activation_link: null
+    value: 312,
+  },
+  {
+    id: "ferramentas-e-servicos-microsoft",
+    name: "Ferramentas e serviços Microsoft",
+    provider: "Visual Studio",
+    description: "Desconto 100%",
+    activationUrl: "", // activation_link: null
+    value: 8757,
+  },
+  {
+    id: "monitoramento-em-nuvem",
+    name: "Monitoramento em nuvem",
+    provider: "New Relic",
+    description: "Desconto 100%",
+    activationUrl: "", // activation_link: null
+    value: 3816,
+  },
 ];
 
 export default function Index() {

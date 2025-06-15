@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import BenefitCard from "@/components/BenefitCard";
@@ -93,6 +92,46 @@ const unlockPackBenefits = [
       "Official certification exam access via MongoDB for student developers.",
     activationUrl: "https://www.mongodb.com/students",
     value: 49,
+  },
+  {
+    id: "nuvem-digital-ocean",
+    name: "Nuvem",
+    provider: "Digital Ocean",
+    description: "Créditos",
+    activationUrl: "",
+    value: 200,
+  },
+  {
+    id: "nuvem-azure",
+    name: "Nuvem",
+    provider: "Azure",
+    description: "Cŕeditos",
+    activationUrl: "https://azure.microsoft.com/en-us/free/students/",
+    value: 200,
+  },
+  {
+    id: "hospedagem-de-aplicacoes",
+    name: "Hospedagem de aplicaçoes",
+    provider: "Heroku",
+    description: "Cŕeditos",
+    activationUrl: "",
+    value: 312,
+  },
+  {
+    id: "ferramentas-e-servicos-microsoft",
+    name: "Ferramentas e serviços Microsoft",
+    provider: "Visual Studio",
+    description: "Desconto 100%",
+    activationUrl: "",
+    value: 8757,
+  },
+  {
+    id: "monitoramento-em-nuvem",
+    name: "Monitoramento em nuvem",
+    provider: "New Relic",
+    description: "Desconto 100%",
+    activationUrl: "",
+    value: 3816,
   },
 ];
 
