@@ -7,6 +7,8 @@ import BenefitCard from "@/components/BenefitCard";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { unlockPackBenefits } from "@/data/unlockPackBenefits";
 import OnboardingForm from "@/components/OnboardingForm";
+import SuggestedBenefits from "@/components/SuggestedBenefits";
+import AllBenefitsGrid from "@/components/AllBenefitsGrid";
 
 // NEW total
 const TOTAL_BENEFITS_VALUE = 82584;
@@ -410,22 +412,14 @@ export default function Index() {
             Based on your path: <span className="font-semibold text-primary">{JSON.parse(localStorage.getItem("unlockpack_user") || "{}")?.track || "Career Track"}</span>
             {gptLoading && <span className="ml-2">Loading recommendations...</span>}
           </p>
-          {/* Suggestion cards & "Why" label grouped together */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 gap-y-8 mb-8">
-            {suggested.map(s => (
-              <div key={s.benefit.id} className="flex flex-col gap-2 mb-2">
-                <BenefitCard
-                  {...s.benefit}
-                  unlocked={!!alreadyUnlocked[s.benefit.id]}
-                  onUnlock={() => handleUnlock(s.benefit.id)}
-                  onRevert={() => handleRevert(s.benefit.id)}
-                />
-                <div className="text-[13px] rounded bg-blue-50/80 p-2 font-medium border border-slate-200 text-blue-900 mt-2">
-                  <span className="font-bold">Why:</span> {s.reason}
-                </div>
-              </div>
-            ))}
-          </div>
+
+          <SuggestedBenefits
+            suggestions={suggested}
+            alreadyUnlocked={alreadyUnlocked}
+            onUnlock={handleUnlock}
+            onRevert={handleRevert}
+          />
+
           {/* Add spacing above the next prompt */}
           <div className="mb-9 mt-8">
             <h3 className="font-semibold text-lg mb-2 mt-4">
@@ -433,27 +427,28 @@ export default function Index() {
             </h3>
             <button
               className="flex items-center gap-2 bg-violet-100 hover:bg-violet-200 px-5 py-2 rounded-lg font-semibold text-violet-800 text-base mt-2 shadow transition"
-              onClick={() => setShowAllBenefits(s => !s)}
+              onClick={() => setShowAllBenefits((s) => !s)}
             >
-              {showAllBenefits ? <>Hide all benefits <ChevronUp className="w-4 h-4" /></>
-                : <>Browse all 30+ available benefits <ChevronDown className="w-4 h-4" /></>
-              }
+              {showAllBenefits ? (
+                <>
+                  Hide all benefits <ChevronUp className="w-4 h-4" />
+                </>
+              ) : (
+                <>
+                  Browse all 30+ available benefits <ChevronDown className="w-4 h-4" />
+                </>
+              )}
             </button>
           </div>
           {showAllBenefits && (
             <div className="border rounded-2xl bg-white/90 p-3 md:p-5 mt-4">
               <h4 className="font-bold text-[19px] mb-4">All Student Benefits</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-2">
-                {unlockPackBenefits.map(b => (
-                  <BenefitCard
-                    key={b.id}
-                    {...b}
-                    unlocked={!!alreadyUnlocked[b.id]}
-                    onUnlock={() => handleUnlock(b.id)}
-                    onRevert={() => handleRevert(b.id)}
-                  />
-                ))}
-              </div>
+              <AllBenefitsGrid
+                allBenefits={unlockPackBenefits}
+                alreadyUnlocked={alreadyUnlocked}
+                onUnlock={handleUnlock}
+                onRevert={handleRevert}
+              />
             </div>
           )}
           <div className="max-w-xl mx-auto mt-7 text-center">
