@@ -4,7 +4,6 @@ import { useState } from "react";
 // Types
 type UserInputs = {
   course: string;
-  country: string;
   track: string;
 };
 
@@ -23,7 +22,7 @@ type GptSuggestionResult = Array<{ benefit: Benefit; reason: string }>;
 function useGptSuggestions(allBenefits: Benefit[]) {
   const [gptLoading, setGptLoading] = useState(false);
 
-  async function getSuggestions({ course, country, track }: UserInputs): Promise<GptSuggestionResult> {
+  async function getSuggestions({ course, track }: UserInputs): Promise<GptSuggestionResult> {
     setGptLoading(true);
 
     // For now, a static mapping; simulate real GPT selection
