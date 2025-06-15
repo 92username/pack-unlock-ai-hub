@@ -1,11 +1,11 @@
 
-import { Book, BookOpen, Dashboard } from "lucide-react";
+import { Book, BookOpen, LayoutDashboard } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { to: "/explore", label: "Explore", icon: BookOpen },
-  { to: "/dashboard", label: "Dashboard", icon: Dashboard },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
 ];
 
 export default function Navbar() {
