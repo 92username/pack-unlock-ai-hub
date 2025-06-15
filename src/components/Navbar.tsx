@@ -26,7 +26,7 @@ export default function Navbar() {
         marginRight: "0.1rem"
       }} />
         UnlockPack
-        <span className="text-[#9C6BFF] font-normal text-2xl">.AI</span>
+        <span className="text-[#9C6BFF] text-2xl font-bold">.AI</span>
       </Link>
       <div className="flex items-center gap-6 ml-10">
         {navItems.map(({
