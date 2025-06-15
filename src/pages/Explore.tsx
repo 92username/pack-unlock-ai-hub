@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import BenefitCard from "@/components/BenefitCard";
 
+// All demoBenefits now require an activationUrl prop
 const demoBenefits = [
   {
     id: "github-student-pack",
@@ -10,6 +11,7 @@ const demoBenefits = [
     logo: "https://github.githubassets.com/images/modules/site/edu/github-pack/github-pack-logo.png",
     description:
       "Free premium developer tools, cloud hosting, and learning resources for students worldwide.",
+    activationUrl: "https://education.github.com/pack",
     category: "Development",
     value: 4200,
   },
@@ -19,6 +21,7 @@ const demoBenefits = [
     logo: "https://static.figma.com/app/icon/1/favicon.png",
     description:
       "Collaborative design and prototyping tools—free for students and educators.",
+    activationUrl: "https://www.figma.com/education/",
     category: "Design",
     value: 540,
   },
@@ -28,6 +31,7 @@ const demoBenefits = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Adobe_Creative_Cloud_rainbow_icon.svg/1024px-Adobe_Creative_Cloud_rainbow_icon.svg.png",
     description:
       "Discounted or free access to Photoshop, Illustrator, and more via your institution.",
+    activationUrl: "https://www.adobe.com/creativecloud/buy/students.html",
     category: "Creative",
     value: 600,
   },
@@ -37,6 +41,7 @@ const demoBenefits = [
     logo: "https://static.canva.com/static/images/favicons/apple-touch-icon-152x152.png",
     description:
       "Easy-to-use design and publishing for classrooms, free for verified students/teachers.",
+    activationUrl: "https://www.canva.com/education/",
     category: "Design",
     value: 120,
   },
@@ -46,6 +51,7 @@ const demoBenefits = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png",
     description:
       "Collaborative workspace for notes and projects—free Personal Pro plan for students.",
+    activationUrl: "https://www.notion.so/students",
     category: "Productivity",
     value: 48,
   },
@@ -60,16 +66,7 @@ export default function Explore() {
     }
   });
 
-  function handleUnlock(id: string) {
-    setUnlocked(u => {
-      const next = { ...u, [id]: true };
-      localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
-      return next;
-    });
-  }
-
   useEffect(() => {
-    // Ensure unlocked states match localStorage on mount
     setUnlocked(u => {
       try {
         return { ...u, ...(JSON.parse(localStorage.getItem("unlockpack_benefits") || "{}")) };
@@ -78,6 +75,22 @@ export default function Explore() {
       }
     });
   }, []);
+
+  function handleUnlock(id: string) {
+    setUnlocked(u => {
+      const next = { ...u, [id]: true };
+      localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
+      return next;
+    });
+  }
+  function handleRevert(id: string) {
+    setUnlocked(u => {
+      const next = { ...u };
+      delete next[id];
+      localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
+      return next;
+    });
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
@@ -98,6 +111,7 @@ export default function Explore() {
               {...b}
               unlocked={!!unlocked[b.id]}
               onUnlock={() => handleUnlock(b.id)}
+              onRevert={() => handleRevert(b.id)}
             />
           ))}
         </div>

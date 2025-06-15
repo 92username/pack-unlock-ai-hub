@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import BenefitCard from "@/components/BenefitCard";
 import { BookOpen } from "lucide-react";
+import Gauge from "@/components/Gauge";
+
+const GOAL = 5508;
 
 const demoBenefits = [
   {
@@ -11,6 +14,7 @@ const demoBenefits = [
     logo: "https://github.githubassets.com/images/modules/site/edu/github-pack/github-pack-logo.png",
     description:
       "Free premium developer tools, cloud hosting, and learning resources for students worldwide.",
+    activationUrl: "https://education.github.com/pack",
     category: "Development",
     value: 4200,
   },
@@ -20,6 +24,7 @@ const demoBenefits = [
     logo: "https://static.figma.com/app/icon/1/favicon.png",
     description:
       "Collaborative design and prototyping tools—free for students and educators.",
+    activationUrl: "https://www.figma.com/education/",
     category: "Design",
     value: 540,
   },
@@ -29,6 +34,7 @@ const demoBenefits = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Adobe_Creative_Cloud_rainbow_icon.svg/1024px-Adobe_Creative_Cloud_rainbow_icon.svg.png",
     description:
       "Discounted or free access to Photoshop, Illustrator, and more via your institution.",
+    activationUrl: "https://www.adobe.com/creativecloud/buy/students.html",
     category: "Creative",
     value: 600,
   },
@@ -38,6 +44,7 @@ const demoBenefits = [
     logo: "https://static.canva.com/static/images/favicons/apple-touch-icon-152x152.png",
     description:
       "Easy-to-use design and publishing for classrooms, free for verified students/teachers.",
+    activationUrl: "https://www.canva.com/education/",
     category: "Design",
     value: 120,
   },
@@ -47,6 +54,7 @@ const demoBenefits = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png",
     description:
       "Collaborative workspace for notes and projects—free Personal Pro plan for students.",
+    activationUrl: "https://www.notion.so/students",
     category: "Productivity",
     value: 48,
   },
@@ -71,7 +79,26 @@ export default function Dashboard() {
     }
   }, []);
 
+  // Add revert handling like in Explore, for completeness (optional UI)
+  function handleRevert(id: string) {
+    setUnlocked(u => {
+      const next = { ...u };
+      delete next[id];
+      localStorage.setItem("unlockpack_benefits", JSON.stringify(next));
+      // recalc value for gauge
+      const unlockedBenefits = demoBenefits.filter(b => next[b.id]);
+      setTotalValue(unlockedBenefits.reduce((acc, b) => acc + b.value, 0));
+      return next;
+    });
+  }
+
   const unlockedBenefits = demoBenefits.filter(b => unlocked[b.id]);
+
+  useEffect(() => {
+    // Sync value if unlocked state changes (e.g. revisit page)
+    const unlockedBenefits = demoBenefits.filter(b => unlocked[b.id]);
+    setTotalValue(unlockedBenefits.reduce((acc, b) => acc + b.value, 0));
+  }, [unlocked]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
@@ -97,6 +124,9 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+        {/* Gauge Meter */}
+        <Gauge value={totalValue} goal={GOAL} />
+
         <h2 className="text-2xl font-bold mb-5 text-primary mt-2">My Unlocked Benefits</h2>
         {unlockedBenefits.length === 0 ? (
           <div className="text-gray-500 mt-8 mb-10 text-lg text-center">
@@ -105,7 +135,7 @@ export default function Dashboard() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {unlockedBenefits.map(b => (
-              <BenefitCard key={b.id} {...b} unlocked />
+              <BenefitCard key={b.id} {...b} unlocked onRevert={() => handleRevert(b.id)} />
             ))}
           </div>
         )}
