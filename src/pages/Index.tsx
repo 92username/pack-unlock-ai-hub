@@ -173,6 +173,14 @@ const unlockPackBenefits = [
     activationUrl: "https://newrelic.com/github-students",
     value: 3816,
   },
+  {
+    id: "bootstrap-studio-visual-site-builder",
+    name: "Bootstrap Studio",
+    provider: "Design",
+    description: "Criação visual de sites com 100% de desconto para estudantes",
+    activationUrl: "https://bootstrapstudio.io/student-discount",
+    value: 29,
+  },
 ];
 
 export default function Index() {
