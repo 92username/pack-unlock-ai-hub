@@ -227,6 +227,46 @@ const unlockPackBenefits = [
     activationUrl: "https://www.pingdom.com/github-students",
     value: 145,
   },
+  {
+    id: "1password-student-plan",
+    name: "1Password for Students",
+    provider: "Security",
+    description: "Secure password manager, SSH key vault, and workflow tool — free for students",
+    activationUrl: "https://1password.com/developers/students",
+    value: 35.88,
+  },
+  {
+    id: "browserstack-test-platform",
+    name: "BrowserStack",
+    provider: "Testing",
+    description: "Run tests on real devices and browsers in the cloud",
+    activationUrl: "https://www.browserstack.com/github-students",
+    value: 2388,
+  },
+  {
+    id: "bump-sh-api-docs",
+    name: "Bump.sh",
+    provider: "API Tools",
+    description: "Auto-generated, versioned API documentation platform",
+    activationUrl: "https://bump.sh/github-students",
+    value: 5364,
+  },
+  {
+    id: "codecov-coverage",
+    name: "Codecov",
+    provider: "CI/CD",
+    description: "Code coverage and quality reporting tool",
+    activationUrl: "https://about.codecov.io/github-students",
+    value: 432,
+  },
+  {
+    id: "codedex-gamified-coding",
+    name: "Codédex",
+    provider: "Learning Platforms",
+    description: "Gamified programming courses and challenges",
+    activationUrl: "https://www.codedex.io/github-students",
+    value: 23893.80,
+  },
 ];
 
 export default function Explore() {
