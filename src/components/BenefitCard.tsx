@@ -35,35 +35,25 @@ export default function BenefitCard({
   onRevert,
 }: Benefit) {
   const [showUnlock, setShowUnlock] = useState(false);
-  const [unlockConfirm, setUnlockConfirm] = useState("");
   const [showRevert, setShowRevert] = useState(false);
-  const [revertConfirm, setRevertConfirm] = useState("");
-  const unlockPhrase = `confirm-unlock-${id}`;
-  const revertPhrase = `revert-unlock-${id}`;
 
-  // Unlock modal - must confirm phrase before unlocking
+  // Unlock modal - opens with confirm/cancel buttons
   const handleUnlock = () => {
-    setUnlockConfirm("");
     setShowUnlock(true);
   };
 
   function confirmUnlock() {
-    if (unlockConfirm === unlockPhrase) {
-      onUnlock?.();
-      setShowUnlock(false);
-    }
+    onUnlock?.();
+    setShowUnlock(false);
   }
 
   const handleRevert = () => {
-    setRevertConfirm("");
     setShowRevert(true);
   };
 
   function confirmRevert() {
-    if (revertConfirm === revertPhrase) {
-      onRevert?.();
-      setShowRevert(false);
-    }
+    onRevert?.();
+    setShowRevert(false);
   }
 
   return (
@@ -93,24 +83,11 @@ export default function BenefitCard({
                         </a>
                       </Button>
                     </div>
-                    <div className="mt-5 text-left text-sm">
-                      To confirm activation, type: <br />
-                      <b className="font-mono bg-muted rounded px-2 py-0.5">{unlockPhrase}</b>
-                    </div>
                   </DialogDescription>
                 </DialogHeader>
-                <input
-                  className="border rounded px-2 py-2 w-full mt-4 font-mono"
-                  type="text"
-                  value={unlockConfirm}
-                  onChange={e => setUnlockConfirm(e.target.value)}
-                  placeholder={unlockPhrase}
-                  autoFocus
-                />
                 <DialogFooter>
                   <Button
                     className="w-full"
-                    disabled={unlockConfirm !== unlockPhrase}
                     onClick={confirmUnlock}
                   >
                     Confirm Unlock
@@ -131,26 +108,19 @@ export default function BenefitCard({
                 <DialogHeader>
                   <DialogTitle>Revert unlock for {name}?</DialogTitle>
                   <DialogDescription>
-                    To confirm this action, type: <br />
-                    <b className="font-mono bg-muted rounded px-2 py-0.5">{revertPhrase}</b>
+                    Are you sure you want to revert and lock this benefit again?
                   </DialogDescription>
                 </DialogHeader>
-                <input
-                  className="border rounded px-2 py-2 w-full mt-4 font-mono"
-                  type="text"
-                  value={revertConfirm}
-                  onChange={e => setRevertConfirm(e.target.value)}
-                  placeholder={revertPhrase}
-                  autoFocus
-                />
                 <DialogFooter>
                   <Button
                     className="w-full"
                     variant="destructive"
-                    disabled={revertConfirm !== revertPhrase}
                     onClick={confirmRevert}
                   >
                     Confirm Revert
+                  </Button>
+                  <Button variant="outline" className="w-full mt-2" onClick={() => setShowRevert(false)}>
+                    Cancel
                   </Button>
                 </DialogFooter>
               </DialogContent>
